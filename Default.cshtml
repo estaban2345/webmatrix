@@ -1,0 +1,37 @@
+﻿@{
+
+ var conexion = Database.Open("db");
+ var result = conexion.Query("select * from datos order by id asc");
+ string cad = Request.QueryString["tex"];
+
+ 
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title> None </title>
+    </head>
+    <body>
+        @RenderPage("cabecera/cabecera.cshtml")
+        
+        Por defecto
+        <form action="" method="get">
+        <input type="text" id="txt" name="tex" />
+            <input type="submit">
+        </form>
+        @if(cad != null){ <p>@cad</p> conexion.Query(String.Format("insert into datos(nombre) values('{0}')",cad)); }
+        
+
+        <ol>
+        @foreach(var tab in result)
+        {
+            
+            
+            <li>@tab.nombre</li>
+
+        }</ol>
+    </body>
+</html>
